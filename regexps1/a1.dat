@@ -1,0 +1,24 @@
+Independently of its category, each concrete stream object will also have
+various capabilities: it can be read-only, write-only, or read-write. It can
+also allow arbitrary random access (seeking forwards or backwards to any
+location), or only sequential access (for example in the case of a socket or
+pipe).
+
+All streams are careful about the type of data you give to them. For example
+giving a str object to the write() method of a binary stream will raise a
+TypeError. So will giving a bytes object to the write() method of a text
+stream.
+
+Changed in version 3.3: Operations that used to raise IOError now raise
+OSError, since IOError is now an alias of OSError.
+
+В российском бюджете сейчас нет денег на повторную индексацию пенсий в 2016
+году. Об этом в четверг, 2 июня, рассказал ТАСС замминистра экономического
+развития Олег Фомичев.
+
+омичев добавил, что вопрос с пенсиями прояснится, когда будет понятно, как
+собирается доходная часть бюджета.
+28 мая президент России Владимир Путин отметил, что правительство нацелено на
+исполнение всех социальных обязательств. «Это я могу точно вам сказать. Я не
+видел, чтобы Дмитрий Анатольевич [Медведев] говорил по этому поводу», — сказал
+глава государства.
