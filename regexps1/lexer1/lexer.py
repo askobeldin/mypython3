@@ -25,6 +25,7 @@ TOKENS_TABLE = {
         ('DESCRIPTION', r'\@'),                  # @
         ('NEWLINE', r'\n'),                      # Line endings
         ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
+        ('tire', r'\u2013+'),                     # 
         ('MISMATCH', r'.'),                      # Any other character
     ],
     'second': [
