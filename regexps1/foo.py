@@ -28,7 +28,9 @@ def tokenize(code):
     tok_regex = '|'.join('(?P<%s>%s)' % pair for pair in token_specification)
     line_num = 1
     line_start = 0
-    for mo in re.finditer(tok_regex, code):
+    pattern = re.compile(tok_regex)
+    # for mo in re.finditer(tok_regex, code):
+    for mo in pattern.finditer(code):
         kind = mo.lastgroup
         value = mo.group(kind)
         if kind == 'NEWLINE':
