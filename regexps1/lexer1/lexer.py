@@ -12,26 +12,37 @@ Token = collections.namedtuple('Token', ['type', 'value', 'line', 'column'])
 
 # tokens table
 TOKENS_TABLE = {
-    'first': [
+    # 'first': [
+        # ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
+        # ('WORD', r'[\w]+'),                      # words
+        # ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
+        # ('SYMBOL', r'[\(\)\-\=\%]'),             # symbols
+        # ('BEGINSECTION', r'\{'),                 # {
+        # ('ENDSECTION', r'\}'),                   # }
+        # ('BEGINCOMMENT', r'\/\*'),               # /*
+        # ('ENDCOMMENT', r'\*\/'),                 # */
+        # ('IDMARKER', r'\|'),                     # |
+        # ('DESCRIPTION', r'\@'),                  # @
+        # ('NEWLINE', r'\n'),                      # Line endings
+        # ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
+        # ('tire', r'\u2013+'),                     # 
+        # ('MISMATCH', r'.'),                      # Any other character
+    # ],
+    # 'second': [
+        # ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
+        # ('WORD', r'[\w]+'),                      # words
+        # ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
+        # ('NEWLINE', r'\n'),                      # Line endings
+        # ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
+        # ('MISMATCH', r'.'),                      # Any other character
+    # ],
+    'text': [
         ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
         ('WORD', r'[\w]+'),                      # words
         ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
-        ('SYMBOL', r'[\(\)\-\=\%]'),             # symbols
-        ('BEGINSECTION', r'\{'),                 # {
-        ('ENDSECTION', r'\}'),                   # }
-        ('BEGINCOMMENT', r'\/\*'),               # /*
-        ('ENDCOMMENT', r'\*\/'),                 # */
-        ('IDMARKER', r'\|'),                     # |
-        ('DESCRIPTION', r'\@'),                  # @
-        ('NEWLINE', r'\n'),                      # Line endings
-        ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
-        ('tire', r'\u2013+'),                     # 
-        ('MISMATCH', r'.'),                      # Any other character
-    ],
-    'second': [
-        ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
-        ('WORD', r'[\w]+'),                      # words
-        ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
+        ('SYMBOL', r'[\-\+\*\\\/\=\&\%\$\~]'),             # symbols
+        ('OPENBRACE', r'[\{\[\(]'),
+        ('CLOSEBRACE', r'[\}\]\)]'),
         ('NEWLINE', r'\n'),                      # Line endings
         ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
         ('MISMATCH', r'.'),                      # Any other character
@@ -43,6 +54,13 @@ FILENAMES = glob('*.dat')
 
 
 def tokenize(pattern, text):
+    """
+    Tokenizer function.
+
+    Yields tokens.
+        pattern - re.compile(...).
+        text - text to tokenizing.
+    """
     line_num = 1
     line_start = 0
     for mo in pattern.finditer(text):
@@ -55,15 +73,15 @@ def tokenize(pattern, text):
             pass
         elif kind == 'MISMATCH':
             # raise RuntimeError('%r unexpected on line %d' % (value, line_num))
-            print('ERROR: \"{0}\" unexpected on line {1}'.format(value, line_num))
-            pass
+            column = mo.start() - line_start
+            yield Token('ERROR', value, line_num, column)
         else:
             column = mo.start() - line_start
             yield Token(kind, value, line_num, column)
 
 
 def main():
-    fmt = "{type:<16} {value:<20} {line:0>5} {column:0>5}"
+    fmt = "{type:<16} {value:<26} {line:0>5} {column:0>5}"
     for name in FILENAMES:
         with open(name, 'r', encoding='utf-8') as f:
             txt = ''.join(f.readlines())
@@ -74,10 +92,8 @@ def main():
                 tok_regex = '|'.join(['(?P<%s>%s)' % pair for pair in TOKENS_TABLE[key]])
                 pattern = re.compile(tok_regex, re.MULTILINE)
                 for token in tokenize(pattern, txt):
-                    print(fmt.format(type=token.type,
-                                     value=token.value,
-                                     line=token.line,
-                                     column=token.column))
+                    print(fmt.format(type=token.type, value=token.value,
+                                     line=token.line, column=token.column))
 
 
 if __name__ == "__main__":
