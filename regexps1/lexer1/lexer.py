@@ -67,6 +67,8 @@ def tokenize(pattern, text):
         kind = mo.lastgroup
         value = mo.group(kind)
         if kind == 'NEWLINE':
+            column = mo.start() - line_start
+            yield Token(kind, 'EOL', line_num, column)
             line_start = mo.end()
             line_num += 1
         elif kind == 'SKIP':
@@ -90,7 +92,8 @@ def main():
                 print('File: {0}, regexp: {1}'.format(name, key))
                 print('-' * 50)
                 tok_regex = '|'.join(['(?P<%s>%s)' % pair for pair in TOKENS_TABLE[key]])
-                pattern = re.compile(tok_regex, re.MULTILINE)
+                # pattern = re.compile(tok_regex, re.MULTILINE)
+                pattern = re.compile(tok_regex)
                 for token in tokenize(pattern, txt):
                     print(fmt.format(type=token.type, value=token.value,
                                      line=token.line, column=token.column))
