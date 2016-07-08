@@ -1,0 +1,45 @@
+Ball screw
+==========
+
+{ this is a test}
+
+A ball screw is a mechanical linear actuator that translates rotational motion
+to linear motion with little friction. A threaded shaft provides a helical
+raceway for ball bearings which act as a precision screw. As well as being able
+to apply or withstand high thrust loads, they can do so with minimum internal
+friction. They are made to close tolerances and are therefore suitable for use
+in situations in which high precision is necessary. The ball assembly acts as
+the nut while the threaded shaft is the screw. In contrast to conventional
+leadscrews, ballscrews tend to be rather bulky, due to the need to have a
+mechanism to re-circulate the balls.
+		   
+Another form of linear actuator based on a rotating rod is the threadless
+ballscrew, a.k.a. "rolling ring drive". In this design, three (or more)
+rolling-ring bearings are arranged symmetrically in a housing surrounding a
+smooth (thread-less) actuator rod or shaft. The bearings are set at an angle to
+the rod, and this angle determines the direction and rate of linear motion per
+revolution of the rod. An advantage of this design over the conventional
+ballscrew or leadscrew is the practical elimination of backlash and loading
+caused by preload nuts.
+      
+Выложить проект с открытым программным кодом - это больше, чем выложить код в
+Интернете.     
+
+Интерес к программным продуктам с открытым исходным кодом растёт последние 10
+лет. Linux стоит и в стиральных машинах, и в боевых дронах. Большинство
+программистов не могут представить свою жизнь без широкого ассортимента
+бесплатных и открытых инструментов в своем распоряжении.
+
+Для начала определимся с предметом, сущностью, с которой работают вышеназванные
+инструменты. Это битовые стримы. Битовый стрим – это то, что получается после
+того, как отработал видео энкодер. Битовый стрим – это поток битов, отвечающий
+спецификации того или иного кодека. Если мы заглянем в спецификацию большинства
+кодеков, то увидим, что этот битстрим представляет из себя ничто иное как набор
+синтаксических элементов данного кодека различной длины. Это, к примеру, ширина
+и высота картинки, профиль кодирования, коэффициенты трансформации, различные
+битовые флаги и т.д. Для стандарта HEVC это сотни синтаксических элементов.
+После кодирования эти битовые стримы доходят до пользователей, помещенные в
+различные медиа контейнеры – avi, mp4, mpeg ts и т.д. Но разработчики кодеков в
+основном работают именно с битовыми стримами. Разработчики ПО, дизайнеры,
+инженеры – электронщики, тестеры имеют свои инструменты для работы. Почему же
+разработчикам кодеков их не иметь?

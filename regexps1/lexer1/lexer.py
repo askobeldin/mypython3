@@ -8,7 +8,7 @@ from glob import glob
 
 
 # definition of token
-Token = collections.namedtuple('Token', ['type', 'value', 'line', 'column'])
+Token = collections.namedtuple('Token', ('type', 'value', 'line', 'column'))
 
 # tokens table
 TOKENS_TABLE = {

@@ -1,0 +1,12 @@
+A roller screw, also known as a planetary roller screw or satellite roller
+screw, is a low-friction precision screw-type actuator, a mechanical device for
+converting rotational motion to linear motion, or vice versa. Planetary roller
+
+[-3.42 4.5 30 mm]
+{make this sentence (10 20 ) test
+here 
+epta  -34.2302 and +3.42$  }
+
+evaluate: 3+4.3 \
+    test /// $ ~~~
+  $ &&&340; ====
