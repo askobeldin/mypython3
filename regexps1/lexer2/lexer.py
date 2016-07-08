@@ -4,49 +4,27 @@
 import sys
 import collections
 import re
+import importlib
 
 
 # definition of token
 Token = collections.namedtuple('Token', ('type', 'value', 'line', 'column'))
 
-# tokens table
-TOKENS_TABLE = {
-    'first': [
-        ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
-        ('WORD', r'[\w]+'),                      # words
-        ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
-        ('SYMBOL', r'[\(\)\-\=\%]'),             # symbols
-        ('BEGINSECTION', r'\{'),                 # {
-        ('ENDSECTION', r'\}'),                   # }
-        ('BEGINCOMMENT', r'\/\*'),               # /*
-        ('ENDCOMMENT', r'\*\/'),                 # */
-        ('IDMARKER', r'\|'),                     # |
-        ('DESCRIPTION', r'\@'),                  # @
-        ('NEWLINE', r'\n'),                      # Line endings
-        ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
-        ('tire', r'\u2013+'),                     # 
-        ('MISMATCH', r'.'),                      # Any other character
-    ],
-    'second': [
-        ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
-        ('WORD', r'[\w]+'),                      # words
-        ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
-        ('NEWLINE', r'\n'),                      # Line endings
-        ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
-        ('MISMATCH', r'.'),                      # Any other character
-    ],
-    'text': [
-        ('NUMBER', r'\d+(\.\d*)?'),              # Integer or decimal number
-        ('WORD', r'[\w]+'),                      # words
-        ('PUNCTUATION', r'[\.\,\;\:\!\?\'\"]'),  # punctuation
-        ('SYMBOL', r'[\-\+\*\\\/\=\&\%\$\~]'),             # symbols
-        ('OPENBRACE', r'[\{\[\(]'),
-        ('CLOSEBRACE', r'[\}\]\)]'),
-        ('EOL', r'\n'),                      # Line endings
-        ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
-        ('MISMATCH', r'.'),                      # Any other character
-    ]
-}
+"""
+Попытка изменить логику работы скрипта
+
+запуск:
+    python3 lexer.py data/one.dat tokens.text
+
+    data/one.dat -- file with text to lexing
+    tokens.text -- text.py in dir `tokens`, it has TOKENS_TABLE
+
+############################################################
+tt = importlib.import_module('tokens.text')
+dir(tt)          # ok
+tt.TOKENS_TABLE  # ok
+
+"""
 
 
 def tokenize(pattern, text):
