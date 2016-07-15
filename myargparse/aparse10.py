@@ -20,6 +20,8 @@ if __name__ == '__main__':
 
     # print('namespace is {}'.format(namespace))
 
+    print('type of namespace.name is {}'.format(type(namespace.name)))
+
     text = namespace.name.read()
     print(text)
 
