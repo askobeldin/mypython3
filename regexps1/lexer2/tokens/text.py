@@ -10,6 +10,6 @@ TOKENS_TABLE = [
         ('OPENBRACE', r'[\{\[\(]'),
         ('CLOSEBRACE', r'[\}\]\)]'),
         ('EOL', r'\n'),                      # Line endings
-        ('SKIP', r'[ \t]+'),                     # Skip over spaces and tabs
+        ('SPACE', r'[ \t]'),                     # spaces and tabs
         ('MISMATCH', r'.'),                      # Any other character
 ]

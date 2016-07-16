@@ -1,0 +1,15 @@
+Getting the Gist of Markdown's Formatting Syntax
+------------------------------------------------
+    
+This page offers a brief overview of what it's like to use Markdown. The
+[syntax page] [s] provides complete, detailed documentation for every feature,
+but Markdown should be very easy to pick up simply by looking at a few
+examples of it in action. The examples on this page are written in a
+before/after style, showing example syntax and the HTML output produced by
+Markdown.
+
+Не так давно посчастливилось сменить место работы. Попал в компанию, которая,
+в принципе, заслуживает отдельной статьи по ряду причин и, возможно, появится
+здесь позже. Если совсем вкратце о структуре нашего отдела: заниматься чем-то,
+кроме своей основной деятельности, не возбраняется, так что взор мой упал на
+наш почтовый сервер, доставляющий много хлопот.

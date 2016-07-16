@@ -15,16 +15,10 @@ Token = collections.namedtuple('Token', ('type', 'value', 'line', 'column'))
 Попытка изменить логику работы скрипта
 
 запуск:
-    python3 lexer.py data/one.dat tokens.text
+    python3 lexer.py data/one.dat tokens/text.py
 
     data/one.dat -- file with text to lexing
     tokens/text.py -- text.py in dir `tokens`, it has TOKENS_TABLE
-
-############################################################
-tt = importlib.import_module('tokens.text')
-dir(tt)          # ok
-tt.TOKENS_TABLE  # ok
-
 """
 
 
@@ -46,8 +40,9 @@ def tokenize(pattern, text):
             yield Token(kind, 'EOL', line_num, column)
             line_start = mo.end()
             line_num += 1
-        elif kind == 'SKIP':
-            pass
+        elif kind == 'SPACE':
+            column = mo.start() - line_start
+            yield Token(kind, ' ', line_num, column)
         elif kind == 'MISMATCH':
             # raise RuntimeError('%r unexpected on line %d' % (value, line_num))
             column = mo.start() - line_start
@@ -82,8 +77,17 @@ if __name__ == "__main__":
     parser.add_argument('datafile', help="Data file to lexing")
     parser.add_argument('tokensfile', help="File with tokens table")
     arguments = parser.parse_args(sys.argv[1:])
-    dfile = arguments.datafile
-    tfile = arguments.tokensfile
-    print(dfile)
-    print(tfile)
 
+    tfile = arguments.tokensfile
+
+    # prepare name of tokensfile for importing
+    if tfile.endswith('.py'):
+        tfile = tfile.replace('.py', '')
+    if '/' in tfile:
+        tfile = tfile.replace('/', '.')
+    try:
+        tt = importlib.import_module(tfile)
+    except Exception:
+        print('Import {} error!'.format(tfile))
+        sys.exit(1)
+    main(arguments.datafile, tt.TOKENS_TABLE)
