@@ -6,6 +6,7 @@ import collections
 import re
 import importlib
 import argparse
+import os.path
 
 
 # definition of token
@@ -78,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument('tokensfile', help="File with tokens table")
     arguments = parser.parse_args(sys.argv[1:])
 
-    tfile = arguments.tokensfile
+    tfile = os.path.normpath(arguments.tokensfile).replace('\\', '/')
 
     # prepare name of tokensfile for importing
     if tfile.endswith('.py'):
