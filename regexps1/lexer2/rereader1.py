@@ -2,7 +2,8 @@
 #
 ################################################################################
 """
-Читает файл и выдает блоки текста, разделенные пустыми строками
+Читает файл и выдает блоки текста.
+Блоки текста разделяются пустыми строками
 """
 
 import sys
@@ -11,18 +12,23 @@ import argparse
 
 
 def rereader(infile, delimiter):
+    """
+    возвращает кортеж из строк блока текста
+    """
     buf = []
     for tline in infile:
+        tline = tline.expandtabs(tabsize=4)
         if delimiter.match(tline):
             if not buf:
+                # skip empty lines
                 pass
             else:
-                yield ''.join(buf)
+                yield tuple(buf)
                 buf.clear()
         else:
             buf.append(tline)
     if buf:
-            yield ''.join(buf)
+            yield tuple(buf)
             buf.clear()
 
 
