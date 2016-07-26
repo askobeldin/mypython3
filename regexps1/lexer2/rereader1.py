@@ -8,7 +8,18 @@
 
 import sys
 import re
+import itertools
 import argparse
+
+from enum import Enum
+
+
+# parts names of a document
+docitem = Enum('docitem', ('header',
+                           'paragraph',
+                           'image',
+                          ))
+
 
 
 def rereader(infile, delimiter):
@@ -34,11 +45,12 @@ def rereader(infile, delimiter):
 
 def main(datafile):
     empty_line = re.compile(r'\s*$')
+    n = itertools.count(start=1)
 
     with open(datafile, 'r', encoding='utf-8') as f:
         blocks = rereader(f, empty_line)
         for i in blocks:
-            print('BLOCK:\n{}\n\n'.format(i), end='')
+            print('BLOCK {0:0>3}: {1}\n'.format(next(n), i), end='')
 
 
 if __name__ == '__main__':
