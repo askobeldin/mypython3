@@ -27,7 +27,7 @@ The Python-Markdown project is developed with the following goals in mind:
   to change and/or extend the behavior of the parser.
 
 Features
---------
+========
 
 In addition to the basic markdown syntax, Python-Markdown supports the following
 features:
@@ -55,8 +55,7 @@ features:
     In addition to being a Python Library, a 
     [command line script](cli.html) is available for your convenience.
 
-Differences
------------
+## Differences
 
 While Python-Markdown strives to fully implement markdown as described in the 
 [syntax rules](http://daringfireball.net/projects/markdown/syntax), the rules 

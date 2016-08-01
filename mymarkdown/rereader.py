@@ -13,31 +13,20 @@ import argparse
 import string
 from collections import namedtuple
 
-# from enum import Enum
 
-
-# parts names of a document
-# docitem = Enum('docitem', ('header',
-                           # 'paragraph',
-                           # 'image',
-                          # ))
-
-
-TEXTLINEINFO = namedtuple('TEXTLINEINFO', ('startswith', 'firstsymbol', 'shift'))
+TEXTLINEINFO = namedtuple('TEXTLINEINFO', ('firstsymbol', 'shift'))
 
 def textlineinfo(txtline):
     """
     возвращает именованный кортеж, описывающий некоторые параметры исследуемой
     строки txtline
 
-    startswith - начальный символ строки
     firstsymbol - первый непробельный символ в строке
     shift - количество пробелов от начала строки до ее первого непробельного
     символа
     """
     firstsymbol = ''
     shift = 0
-    startswith = txtline[0]
     for n, v in enumerate(txtline):
         if v in string.whitespace:
             shift = n
@@ -50,7 +39,31 @@ def textlineinfo(txtline):
             shift = n
             firstsymbol = v
             break
-    return TEXTLINEINFO(startswith, firstsymbol, shift)
+    return TEXTLINEINFO(firstsymbol, shift)
+
+# XXX - not so good
+def get_suggestions(txtblock):
+    hints = []
+    # headers or paragraphs?
+    if len(txtblock) == 1:
+        tlinfo = textlineinfo(txtblock[0])
+        if tlinfo.firstsymbol in '#':
+            hints.append('header')
+    if len(txtblock) == 2:
+        tlinfo = textlineinfo(txtblock[1])
+        if tlinfo.firstsymbol in '-=':
+            hints.append('header')
+    # unorderd list
+    tlinfo = textlineinfo(txtblock[0])
+    if tlinfo.firstsymbol in '*-+':
+        hints.append('unorderedlist')
+    if tlinfo.shift > 0:
+        hints.append('unorderedlist')
+
+    # end of looking for suggestions
+    if not hints:
+        hints.append('paragraph')
+    return set(hints)
 
 def rereader(infile, delimiter):
     """
@@ -77,18 +90,45 @@ def rereader(infile, delimiter):
             yield tuple(buf)
             buf.clear()
 
+def process_header(txt):
+    """
+    ((type, expr), ...)
+    """
+    result = ''
+    headers = (
+        ('h1', re.compile(r'\#{1}\s+(\w*)')),
+
+        # XXX - doesn't work
+        ('h1-2', re.compile(r'^(\w*)\n\=*', re.MULTILINE)),
+
+        ('h2', re.compile(r'\#{2}\s{1,}(\w*)')),
+        # ('h2', re.compile(r'(\w*)\n\-*', re.MULTILINE)),
+    )
+    for t, e in headers:
+        if e.match(txt):
+            result = 'Header type {}'.format(t)
+            break
+    if not result:
+        result = 'Header doesn\'t determined'
+    return result
+
+
 def main(datafile):
     empty_line = re.compile(r'\s*$')
     n = itertools.count(start=1)
+    fmt1 = '[I] block: {block:0>3}, hints: {hints}\n{text}'
     with open(datafile, 'r', encoding='utf-8') as f:
         blocks = rereader(f, empty_line)
         for b in blocks:
-            # print('BLOCK {0:0>3}: {1}\n'.format(next(n), b), end='')
-            print('[BLOCK {0:0>3}]:\n{1}'.format(next(n), ''.join(b)), end='')
-            print('info -->:')
-            for txtline in b:
-                print(textlineinfo(txtline))
-            print(80 * '=')
+            h = get_suggestions(b)
+            # print(fmt1.format(block=next(n),
+                              # hints=', '.join(str(i).upper() for i in h),
+                              # text=''.join(b)))
+            # check headers
+            if 'header' in h:
+                txt = ''.join(b)
+                print('{0}\n{1}'.format(process_header(txt), txt))
+
 
 
 if __name__ == '__main__':
