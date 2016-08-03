@@ -1,5 +1,5 @@
 
-Python-Markdown
+Python-Markdown  
 ===============
 
 This is a Python implementation of John Gruber's 
@@ -11,7 +11,7 @@ for the syntax rules.
 
 See the [installation instructions](install.html) to get started.
 
-Goals
+Goals  
 -----
 
 The Python-Markdown project is developed with the following goals in mind:
@@ -55,7 +55,7 @@ features:
     In addition to being a Python Library, a 
     [command line script](cli.html) is available for your convenience.
 
-## Differences
+## Differences  
 
 While Python-Markdown strives to fully implement markdown as described in the 
 [syntax rules](http://daringfireball.net/projects/markdown/syntax), the rules 

@@ -29,13 +29,20 @@ retable = (
     (r'#{1}\s+(?P<text>.+\b)', h13),
     (r'#{1}\s+(?P<text>.+\b)', h13 + '#'),
     (r'#{1}\s?(?P<text>.+\b)', '# Tesing header. #  '),
-    (r'#{1}\s?(?P<text>.+?\b)', '# Tesing header. #  '),
-    (r'#{1}\s?(?P<text>.+\b)', '#Tesing header.#  '),
-    (r'#{1}\s?(?P<text>.+\b)', '# Tesing header 34. #  '),   # good
+    (r'^#{1}\s?(?P<text>.+?\b)', '# Tesing header. #  '),
+    (r'^#{1}\s?(?P<text>.+\b)', '#Tesing header.#  '),
 
-    (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11, 'M'),  # good
+    # semi-good for single line header
+    (r'^#{1}\s?(?P<text>.+\b)', '# Tesing header 34. #  '),
+    (r'^#{1}\s?(?P<text>.+\b)', '# Tesing header 35. #  '),
+    (r'^#{1}\s?(?P<text>.+\b)', ' # Tesing header 36. #  '),
+
+    # good for header on couple lines
+    (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11, 'M'),
+
     # (?m) - this is the flag M
     (r'(?m)(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11),
+
     (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11 + '   ', 'M'),
     (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', '3. ' + h11 + '   ', 'M'),
 

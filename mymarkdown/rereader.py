@@ -96,17 +96,21 @@ def process_header(txt):
     """
     result = ''
     headers = (
-        ('h1', re.compile(r'\#{1}\s+(\w*)')),
-
-        # XXX - doesn't work
-        ('h1-2', re.compile(r'^(\w*)\n\=*', re.MULTILINE)),
-
-        ('h2', re.compile(r'\#{2}\s{1,}(\w*)')),
-        # ('h2', re.compile(r'(\w*)\n\-*', re.MULTILINE)),
+        # single line header
+        ('h1', re.compile(r'^#{1}\s?(?P<text>\b.+\b)')),
+        ('h2', re.compile(r'^#{2}\s?(?P<text>\b.+\b)')),
+        ('h3', re.compile(r'^#{3}\s?(?P<text>\b.+\b)')),
+        ('h4', re.compile(r'^#{4}\s?(?P<text>\b.+\b)')),
+        ('h5', re.compile(r'^#{5}\s?(?P<text>\b.+\b)')),
+        ('h6', re.compile(r'^#{6}\s?(?P<text>\b.+\b)')),
+        # header on 2 lines
+        ('h1', re.compile(r'(?P<text>\b.+\b)\s*?(?:\n|\r|\r\n?)\=+', re.MULTILINE)),
+        ('h2', re.compile(r'(?P<text>\b.+\b)\s*?(?:\n|\r|\r\n?)\-+', re.MULTILINE)),
     )
     for t, e in headers:
-        if e.match(txt):
-            result = 'Header type {}'.format(t)
+        match = e.match(txt)
+        if match:
+            result = 'Header type {}, text: {!r}'.format(t, match.groupdict()['text'])
             break
     if not result:
         result = 'Header doesn\'t determined'
@@ -127,7 +131,7 @@ def main(datafile):
             # check headers
             if 'header' in h:
                 txt = ''.join(b)
-                print('{0}\n{1}'.format(process_header(txt), txt))
+                print('{}\n{!r}\n'.format(process_header(txt), txt))
 
 
 
