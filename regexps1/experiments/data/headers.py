@@ -34,6 +34,8 @@ retable = (
     (r'#{1}\s?(?P<text>.+\b)', '# Tesing header 34. #  '),   # good
 
     (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11, 'M'),  # good
+    # (?m) - this is the flag M
+    (r'(?m)(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11),
     (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', h11 + '   ', 'M'),
     (r'(?P<text>\b.+\b)[\W\s]+(?:\n|\r|\r\n?)\=+', '3. ' + h11 + '   ', 'M'),
 
