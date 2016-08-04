@@ -3,10 +3,10 @@
 ################################################################################
 import sys
 import re
-import itertools
+# import itertools
 import argparse
-import string
-from collections import namedtuple
+# import string
+# from collections import namedtuple
 
 # tokens table
 TOKENS_TABLE = (
@@ -24,7 +24,7 @@ def main(datafile):
     for mo in pattern.finditer(txt):
         kind = mo.lastgroup
         value = mo.group(kind)
-        print('[{}]:\n{}'.format(kind, value))
+        print('[{}]:\n{!r}\n'.format(kind, value))
     # debugging
     # print('\n\ntxt is:\n{!r}'.format(txt))
 
