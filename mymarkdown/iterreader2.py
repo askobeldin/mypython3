@@ -16,11 +16,11 @@ TOKENS_TABLE = (
         ('HEADER1', r'^#{1,6}\s?.+(?:\n|\r|\r\n?){2}(?im)'),
         ('HEADER2', r'^.+\s*(?:\n|\r|\r\n?)[\=|\-]{5,}(?:\n|\r|\r\n?){2}(?im)'),
         # ('EMPTYLINE', r'^\s*$(?m)'),
-        ('UNORDEREDLIST', r'^\s*(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))+(?im)'),
-        ('ORDEREDLIST', r'^\s*\d+\.\d*\s+(.+(?:\n|\r|\r\n?))+(?im)'),
-        ('BLOCKQUOTE', r'^\s*\>\s*?(.+(?:\n|\r|\r\n?))+(?im)'),
-        # it must be last
-        ('TEXTBLOCK', r'(.+(?:\n|\r|\r\n?))+(?im)'),
+        ('UNORDEREDLISTITEM', r'^\s*(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))(?im)'),
+        ('ORDEREDLISTITEM', r'^\s*\d+\.\d*\s+(.+(?:\n|\r|\r\n?))(?im)'),
+        ('BLOCKQUOTEITEM', r'^\s*\>\s*?(.+(?:\n|\r|\r\n?))(?im)'),
+        # it must be last; it can match empty text line
+        ('TEXTITEM', r'(.+(?:\n|\r|\r\n?))+?(?im)'),
 )
 
 TOK_REGEX = '|'.join(['(?P<%s>%s)' % pair for pair in TOKENS_TABLE])
