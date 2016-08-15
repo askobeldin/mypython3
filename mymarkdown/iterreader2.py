@@ -7,6 +7,7 @@ import itertools
 import argparse
 # import string
 from collections import namedtuple
+import io
 
 # from rereader import textlineinfo
 
@@ -43,6 +44,7 @@ def textblocks(txt):
 def main(arguments):
     n = itertools.count(start=1)
     fmt1 = '[I] block: {block:0>3}, type: {type}\n{text}'
+    out = io.StringIO()
     with open(arguments.datafile, 'r', encoding='utf-8') as f:
         textlines = f.readlines()
     for block in textblocks(''.join(textlines)):
@@ -50,9 +52,9 @@ def main(arguments):
             text = '{!r}'.format(block.value)
         else:
             text = block.value
-        print(fmt1.format(block=next(n),
-                          type=block.type,
-                          text=text))
+        print(fmt1.format(block=next(n), type=block.type, text=text),
+              file=out)
+    print(out.getvalue())
 
 
 if __name__ == '__main__':
