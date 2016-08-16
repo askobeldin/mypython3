@@ -76,12 +76,13 @@ for cmd, path in cmd_items:
         #
         print('names in file: {}'.format(code.co_filename))
         print(code.co_names)
-        print('---')
+        print('-' * 50)
         #
         exec(code, methods_module.__dict__)
         setattr(NS,
                 cmd,
                 getattr(methods_module, cmd))
+
 
 # Make instance
 inst = NS()
@@ -92,4 +93,4 @@ inst_methods = [name for name in dir(inst) if all((not name.startswith('_'),
                                                  callable(getattr(inst,
                                                                   name))))]
 for method in inst_methods:
-    getattr(inst, method)('text line')
+    getattr(inst, method)('Testing text line, epta!')
