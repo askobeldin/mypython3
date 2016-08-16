@@ -16,11 +16,8 @@ import io
 TOKENS_TABLE = (
         ('HEADER1', r'^#{1,6}\s?.+(?:\n|\r|\r\n?){1}(?im)'),
         ('HEADER2', r'^.+\s*(?:\n|\r|\r\n?)[\=|\-]{5,}(?:\n|\r|\r\n?){1}(?im)'),
-        # ('UNORDEREDLISTITEM', r'^\s*(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))(?im)'),
         ('UNORDEREDLISTITEM', r'^[\t ]*?(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))(?im)'),
-        # ('ORDEREDLISTITEM', r'^\s*\d+\.\d*\s+(.+(?:\n|\r|\r\n?))(?im)'),
         ('ORDEREDLISTITEM', r'^[\t ]*?\d+\.\d*\s+(.+(?:\n|\r|\r\n?))(?im)'),
-        # ('BLOCKQUOTEITEM', r'^\s*\>\s*?(.+(?:\n|\r|\r\n?))(?im)'),
         ('BLOCKQUOTEITEM', r'^[\t ]*?\>\s*?(.+(?:\n|\r|\r\n?))(?im)'),
         ('EMPTYLINE', r'^\s*$'),
         # it must be last; it can match empty text line
