@@ -70,7 +70,7 @@ def rereader(infile, delimiter):
 
 
 def main(datafile):
-    empty_line = re.compile(r'\s*$')
+    empty_line = re.compile(r'^\s*$')
     n = itertools.count(start=1)
     fmt1 = '[I] block: {block:0>3}\n{text}'
     with open(datafile, 'r', encoding='utf-8') as f:
