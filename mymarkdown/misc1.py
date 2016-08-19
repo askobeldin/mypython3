@@ -45,8 +45,9 @@ def textlineinfo(textline):
 
 def main(arguments):
     n = itertools.count(start=1)
-    fmt1 = '[I] line: {line:<4} F: {first:<4} S: {shift:<3} empty?: {empty:<4} line?: {isline:<4}\n{text}'
-    info = '[I] line: {line:<4} F: {first:<4} S: {shift:<3} empty?: {empty:<4} line?: {isline:<4}'
+    info = ('[I] line: {line:<4} F: {first:<4} S: {shift:<3} '
+            'empty?: {empty:<4} line?: {isline:<4}')
+    fmt1 = info + '\n{text}'
     out = io.StringIO()
     with open(arguments.datafile, 'r', encoding='utf-8') as f:
         textlines = [line.expandtabs(4) for line in f.readlines()]
