@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 ############################################################
 """
+SM - конечный автомат, разбивает предложение при посимвольном чтении на слова
+по пробелам и знакам пунктуации (их игнорирует)
 """
 
 import string
 
 
-SENTENCE = 'this is,a,test,sentence here'
+SENTENCE = 'this is,a,test,sentence here, ептыть!!!'
 
 
 isletter = lambda ch: ch.isalnum()
@@ -49,13 +51,13 @@ class SM:
 
 
 
-def main():
+def main(s):
     a = SM()
-    for i in SENTENCE:
+    for i in s:
         a.process(i)
-    print(a.aslist())
+    print('{!r} divided on:\n{}'.format(s, a.aslist()))
 
 
 if __name__ == '__main__':
-    main()
+    main(SENTENCE)
 
