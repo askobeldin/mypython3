@@ -14,9 +14,9 @@ import sys
 from types import ModuleType
 
 
-print('__name__ is {}'.format(__name__))
-print('__file__ is {}'.format(abspath(__file__)))
-print('os.path.dirname is {}'.format(dirname(abspath(__file__))))
+# print('__name__ is {}'.format(__name__))
+# print('__file__ is {}'.format(abspath(__file__)))
+# print('os.path.dirname is {}'.format(dirname(abspath(__file__))))
 print('home folder is {}'.format(expanduser('~')))
 
 pconfig = ConfigParser(interpolation=ExtendedInterpolation())
@@ -44,6 +44,7 @@ for section in pconfig.sections():
         if '\n' in value:
             value = ', '.join([word for word in value.split('\n') if word])
         print(data_line.format(section, option, value))
+
 ############################
 def cmdfiles(folder):
     names = [path for path in glob(abspath(join(folder, '*.py')))]
@@ -52,7 +53,7 @@ def cmdfiles(folder):
 
 
 cmds = cmdfiles(pconfig[sys.platform]['cli_commands'])
-print('\nCommands: {}'.format(', '.join([name for name, ext in
+print('\nCommands: {}\n\n'.format(', '.join([name for name, ext in
                                        [splitext(basename(c)) for c in
                                         cmds]])))
 
@@ -86,7 +87,6 @@ for cmd, path in cmd_items:
 
 # Make instance
 inst = NS()
-
 print('\nCalling methods:')
 
 inst_methods = [name for name in dir(inst) if all((not name.startswith('_'),
