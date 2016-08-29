@@ -16,6 +16,14 @@ $ $VENV/bin/pserve development.ini --reload
 # run pyramid shell
 $ bin/pshell -p ipython traversing1/development.ini
 
+# or you can add to development.ini:
+
+    [pshell]
+    default_shell = ipython
+
+# and then run:
+$ bin/pshell traversing1/development.ini
+
 
 
 # additional installs ?
