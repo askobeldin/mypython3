@@ -5,6 +5,7 @@
 """
 import os.path
 import types
+import io
 
 from mako.template import Template
 from mako.lookup import TemplateLookup
@@ -24,24 +25,27 @@ def serve_template(templatename, lookup, **kwargs):
     mytemplate = lookup.get_template(templatename)
     print(mytemplate.render(**kwargs))
 
-
+def render_template(templatename, lookup, **kwargs):
+    mytemplate = lookup.get_template(templatename)
+    return mytemplate.render(**kwargs)
 
 # templates subfolder
 pathways.templates = mkabspath(CURDIR, 'templates')
 # cache for templates
 pathways.cache = mkabspath(CURDIR, '.cache')
 
-
-# print('templates: {}'.format(pathways.templates))
-# print('cache: {}'.format(pathways.cache))
-
 mylookup = TemplateLookup(directories=[pathways.templates],
                           input_encoding='utf-8',
                           module_directory=pathways.cache)
 
+print('templates: {}'.format(pathways.templates))
+print('cache: {}'.format(pathways.cache))
 
-# stemplate = mylookup.get_template('mytemplate1.txt')
-# print(stemplate.render())
+output = io.StringIO()
 
-print('rendering template1.txt\n================================')
-serve_template('mytemplate1.txt', lookup=mylookup)
+print('rendering template1.mktxt\n================================')
+
+for i in range(2):
+    print(render_template('mytemplate1.mktxt', lookup=mylookup),
+          file=output)
+print(output.getvalue())
