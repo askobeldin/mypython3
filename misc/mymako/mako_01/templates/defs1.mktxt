@@ -1,0 +1,31 @@
+<%page args="x"/>
+<%doc>
+попытка исследовать вызов функций в шаблонах
+
+</%doc>
+
+<%def name="hello()" filter="trim">
+    hello world
+</%def>
+
+<%def name="myfunc(x)" filter="trim">
+    this is myfunc, x is ${x}
+
+</%def>
+
+#########################################
+Это первая строка текста шаблона собственно.
+переменная x == ${x};
+
+% if x >= 5:
+Переменная больше или равна 5!
+% else:
+Variable less than 5
+% endif
+
+вызов хелло: ${hello()}.
+
+<% age = 14 %>
+this is myfunc(${age}): ${myfunc(age)}.
+
+this text line is last.
