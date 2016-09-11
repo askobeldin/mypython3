@@ -1,0 +1,7 @@
+<%namespace name="mystuff" file="defs2.mktxt"/>
+Это текст шаблона, первая строка.
+
+Calling Defs from Other Files
+
+${mystuff.hello()}
+${mystuff.myfunc(343)}

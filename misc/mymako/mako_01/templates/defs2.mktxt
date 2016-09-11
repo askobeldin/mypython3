@@ -1,0 +1,12 @@
+<%doc>
+Library of defs
+</%doc>
+
+<%def name="hello()" filter="trim">
+    hello world from library, epta!
+</%def>
+
+<%def name="myfunc(x)" filter="trim">
+    this is myfunc from library, x is ${x}
+
+</%def>
