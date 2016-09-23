@@ -18,10 +18,9 @@ def main(global_config, **settings):
     config.add_view(resource_view, context=Resource)
     ###########
     print('sys.path:')
-    for e in sys.path:
-        print(e)
-    print('\nmy data from foo')
+    for e in sys.path: print(e)
     a = Foo()
+    print('\nmy data from Foo')
     print(a.a)
     print(type(a))
     ###########
