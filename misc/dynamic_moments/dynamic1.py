@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+#
 ###############################################################################
+# ??????????????? 
+# странно все это работает
 """
 In Python you sometimes want to dynamically add methods to classes or class
 instances (objects). In Python code, the most obvious way to accomplish this
@@ -63,32 +66,32 @@ So now we can create any number of MyObj instances and they will all contain
 the new method. Pretty handy eh?
 """
 
+from types import MethodType
+
 class Foo:
     def __init__(self):
-        self.actions = {}
-        self.buf = []
-    def action(self, symbol, func):
-        self.actions[symbol] = func
-
-o = Foo()
-
-def func1():
-    print('calling func1')
-
-def func2(cls, msg):
-    cls.buf.append(10)
-    print('calling func2 with {}'.format(msg))
-    print('buffer is {!r}'.format(cls.buf))
+        self.value = 42
 
 
-o.action('a', func1)
-# o.action('b', func2)
-setattr(o, 'b', func2)
+def setnewvalue(self, n):
+    print('old value is {}'.format(self.value))
+    self.value = n
 
-o.actions['a']()
-# f = o.actions['b']
-f = getattr(o, 'b')
-# print(f)
-# o.b('simple message, epta!')
-f(o, 'simple message, epta!')
-o.b('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
+obj = Foo()
+obj2 = Foo()
+
+obj.setnewvalue = MethodType(setnewvalue, obj)
+
+
+print('value is {}'.format(obj.value))
+print('value is {}'.format(obj2.value))
+
+obj.setnewvalue(100)
+# obj2.setnewvalue(10)
+
+print('value is {}'.format(obj.value))
+print('value is {}'.format(obj2.value))
+
+print(dir(obj))
+print(dir(obj2))
