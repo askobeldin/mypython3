@@ -10,12 +10,14 @@ SM - конечный автомат, разбивает предложение 
 таблица переходов:
 ((текущее состояние, сигнал), новое состояние)
 
-((R, space), R)
-((R, punct), R)
-((R, letter), C)
-((C, letter), C)
-((C, space), R)
-((C, punct), R)
+    ((R, space), R)
+    ((R, punct), R)
+    ((R, letter), C)
+    ((C, letter), C)
+    ((C, space), R)
+    ((C, punct), R)
+
+R - ready, C - collecting
 
 """
 import string
@@ -44,7 +46,6 @@ def _tostate_R_from_C(self):
     self.container.append(''.join(self.buf))
     self.buf.clear()
     return
-
 
 # state machine
 class SM:
@@ -106,10 +107,10 @@ def main():
     # таблица функций вызываемых автоматом при переходе из одного состояния в
     # другое
     actions = {
-                ('R', 'R'): _tostate_R,
-                ('R', 'C'): _tostate_C,
-                ('C', 'C'): _tostate_C,
-                ('C', 'R'): _tostate_R_from_C
+        ('R', 'R'): _tostate_R,
+        ('R', 'C'): _tostate_C,
+        ('C', 'C'): _tostate_C,
+        ('C', 'R'): _tostate_R_from_C
     }
 
     # instance of state machine
