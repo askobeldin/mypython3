@@ -9,10 +9,11 @@ import string
 __all__ = ['items']
 
 
-# Returns True if textline consist from the same symbols and length > 3 symbols
+# Returns True if textline consist from symbols `-` or `=`
 def _isline(textline):
     st = textline.strip()
-    return all((len(set(st)) == 1, len(st) > 3))
+    return all((len(set(st)) == 1,
+                st[0] in ('=', '-')))
 
 # Returns True if textline is empty
 _isempty = lambda textline: len(textline.strip()) == 0
