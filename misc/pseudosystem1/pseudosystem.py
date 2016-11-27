@@ -49,7 +49,7 @@ for section in pconfig.sections():
 def cmdfiles(folder):
     names = [path for path in glob(abspath(join(folder, '*.py')))]
     return [path for path in names if all((exists(path),
-                                           not basename(path).startswith('_')))]
+                                       not basename(path).startswith('_')))]
 
 
 cmds = cmdfiles(pconfig[sys.platform]['cli_commands'])
