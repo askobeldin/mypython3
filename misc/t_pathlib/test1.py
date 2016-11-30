@@ -21,25 +21,24 @@ def main(args=None):
     p1 = Path('.')
     p2 = Path(__file__)
 
-    msg1 = 'Path for \".\" is {}'
-    msg2 = 'Path for \"__file__\" is {}'
+    info = '{msg:<18}:{value}'
 
-    print(msg1.format(p1.resolve()))
-    print(msg2.format(p2.resolve()))
+    print(info.format(msg='Path(\'.\')', value=p1.resolve()))
+    print(info.format(msg='Path(\'__file__\')', value=p2.resolve()))
 
-    print('p1.parent is {}'.format(p1.parent.resolve()))
-    print('p2.parent is {}'.format(p2.parent.resolve()))
+    print(info.format(msg='p1.parent', value=p1.parent.resolve()))
+    print(info.format(msg='p2.parent', value=p2.parent.resolve()))
 
-    print('p1.as_uri() is {}'.format(p1.resolve().as_uri()))
-    print('p2.as_uri() is {}'.format(p2.resolve().as_uri()))
+    print(info.format(msg='p1.as_uri()', value=p1.resolve().as_uri()))
+    print(info.format(msg='p2.as_uri()', value=p2.resolve().as_uri()))
 
-    print('Path.cwd() is {}'.format(Path.cwd()))
+    print(info.format(msg='Path.cwd()', value=Path.cwd()))
 
-    print('p1.is_dir() is {}'.format(p1.resolve().is_dir()))
-    print('p2.is_dir() is {}'.format(p2.resolve().is_dir()))
+    print(info.format(msg='p1.is_dir()', value=p1.resolve().is_dir()))
+    print(info.format(msg='p2.is_dir()', value=p2.resolve().is_dir()))
 
-    print('p1.is_file() is {}'.format(p1.resolve().is_file()))
-    print('p2.is_file() is {}'.format(p2.resolve().is_file()))
+    print(info.format(msg='p1.is_file()', value=p1.resolve().is_file()))
+    print(info.format(msg='p2.is_file()', value=p2.resolve().is_file()))
 
     print('\n\np1.iterdir()\n==================================')
     for child in p1.iterdir():
