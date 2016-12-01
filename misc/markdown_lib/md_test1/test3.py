@@ -27,7 +27,8 @@ def main(args=None):
                         help="Extension of markdown files")
     arguments = parser.parse_args(args)
     fn = filenames(arguments.folder, arguments.extension)
-    mdc = markdown.Markdown(output_format='html5')
+    mdc = markdown.Markdown(output_format='html5',
+                           extensions=['markdown.extensions.extra'])
     content = Template('\n'.join(("<!doctype html>",
                        "<html>",
                        "<head>",
