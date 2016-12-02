@@ -15,6 +15,7 @@ def main(args=None):
     parser.add_argument('-i', '--info', action='store_true',
                         help="Prints just info")
     arguments = parser.parse_args(args)
+    # do some work
     for item in mymd.reader.items(arguments.datafile, encoding='utf-8'):
         print(item)
 
