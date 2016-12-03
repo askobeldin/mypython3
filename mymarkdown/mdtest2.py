@@ -34,7 +34,7 @@ def main(args=None):
     BLOCKSPATTERN = re.compile(TOK_REGEX)
 
     # do some work
-    msg1 = '{nr: >4}  {kind:<22}: {value!r}'
+    msg1 = '{nr: >4}  {kind:<22} {value!r}'
     for item in mymd.reader.items(arguments.datafile, encoding='utf-8'):
         if item.kind == 'TEXT':
             mo = re.match(BLOCKSPATTERN, item.value)
