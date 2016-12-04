@@ -25,7 +25,10 @@ def main(args=None):
              r'^\s*(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))(?i)'),
             ('ORDEREDLISTITEM',
              r'^\s*\d+\.\s+(.+(?:\n|\r|\r\n?))(?i)'),
-            #  ('BLOCKQUOTEITEM', r'^[\t ]*?\>\s*?(.+(?:\n|\r|\r\n?))(?im)'),
+            ('BLOCKQUOTEITEM',
+             r'^\s*\>\s*(.+(?:\n|\r|\r\n?))(?i)'),
+            ('REFLINKITEM',
+             r'^\s*\[.+\]\:(.+(?:\n|\r|\r\n?))(?i)'),
             # it must be last; it can match empty text line
             ('TEXTITEM',
              r'(.+(?:\n|\r|\r\n?))(?i)'),
