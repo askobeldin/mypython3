@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-################################################################################
+###############################################################################
 import sys
 import re
 import argparse
@@ -36,7 +36,8 @@ def main(tmodule):
             mgroupdict = match.groupdict()
             if mgroups:
                 if mgroupdict:
-                    print(matchmsg_grpdict.format(rexp, flags, txt, match.groupdict()))
+                    print(matchmsg_grpdict.format(rexp, flags, txt,
+                                                  match.groupdict()))
                     continue
                 print(matchmsg_grp.format(rexp, flags, txt, match.groups()))
             else:

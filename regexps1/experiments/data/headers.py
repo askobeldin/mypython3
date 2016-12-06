@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-################################################################################
+###############################################################################
 # looking for \n for different platforms --> (?:\n|\r|\r\n?)
-
-
 
 h1 = '# This is header one'
 h11 = 'This is header one.   \n==============='
@@ -16,7 +14,7 @@ h21 = 'This is header two\n---------------'
 
 # main table for testing
 # must be in every file
-# third element in tuple - flags for comile: M, I, S
+# third element in tuple - flags for compile: M, I, S
 # in case of some flags = 'MIS'
 retable = (
     (r'#', h1),

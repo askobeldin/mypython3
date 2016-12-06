@@ -8,7 +8,7 @@ h2 = '## This is header two'
 
 # main table for testing
 # must be in every file
-# third element in tuple - flags for comile: M, I, S
+# third element in tuple - flags for compile: M, I, S
 # in case of some flags = 'MIS'
 retable = (
     (r'#', h1),
