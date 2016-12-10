@@ -3,6 +3,7 @@
 ###############################################################################
 import sys
 import argparse
+import re
 
 import mymd
 
@@ -18,8 +19,24 @@ def main(args=None):
 
     # do some work
     msg1 = '{nr: >4}  {kind:<22} {value!r}'
+    msg2 = '{nr: >4} {shift:>3}  {kind:<22} {value!r}'
     for item in mymd.reader.items(arguments.datafile, encoding='utf-8'):
-        print(msg1.format(kind=item.kind, value=item.value, nr=item.linenr))
+        if item.kind not in ('EMPTY', 'ERROR', 'LINE'):
+            # try to count shift for text line
+            m = re.search(r'\S', item.value)
+            if m:
+                shift = m.start()
+            else:
+                shift = None
+            print(msg2.format(kind=item.kind,
+                              value=item.value,
+                              shift=shift,
+                              nr=item.linenr))
+        else:
+            print(msg2.format(kind=item.kind,
+                              value=item.value,
+                              shift='-',
+                              nr=item.linenr))
 
 
 if __name__ == '__main__':
