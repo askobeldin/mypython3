@@ -50,6 +50,9 @@ class TextLine:
         self.kind = kind
         self.value = value
         self.linenr = linenr
+    def __repr__(self):
+        fmt = '({nr}, {kind!r}, {value!r})'
+        return fmt.format(nr=self.linenr, kind=self.kind, value=self.value)
 
 def items(filename, encoding='utf-8'):
     """Reads file `filename` with encoding `encoding` line by line and yielding
