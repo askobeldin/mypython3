@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-################################################################################
+###############################################################################
 """Try to use file based templates
 """
 import os.path
@@ -23,7 +23,7 @@ pathways = types.SimpleNamespace()
 
 def serve_template(templatename, lookup, **kwargs):
     mytemplate = lookup.get_template(templatename)
-    print(mytemplate.render(**kwargs))
+    print(mytemplate.render(**kwargs), end='')
 
 def render_template(templatename, lookup, **kwargs):
     mytemplate = lookup.get_template(templatename)
@@ -45,7 +45,6 @@ output = io.StringIO()
 
 print('rendering template1.mktxt\n================================')
 
-for i in range(2):
-    print(render_template('mytemplate1.mktxt', lookup=mylookup),
-          file=output)
-print(output.getvalue())
+print(render_template('mytemplate1.mktxt', lookup=mylookup), end='',
+      file=output)
+print(output.getvalue(), end='')

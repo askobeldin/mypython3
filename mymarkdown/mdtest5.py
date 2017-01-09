@@ -49,7 +49,7 @@ def main(args=None):
     c = mymd.Convertor()
     tpl = c.convertfile(arguments.datafile, encoding='utf-8')
     # items in tpl are: (linenr as int, kind as str, value as str)
-    # print(tpl)
+    print(tpl)
 
 
 if __name__ == '__main__':
