@@ -1,0 +1,9 @@
+Shipping DSL grammar example:
+============================
+
+when shipping domestically
+    if delivery date is flexible ship as cheaply as possible
+    if delivery date is specified pass shipping cost on to customer
+
+when shipping internationally
+    then ship as cheaply as possible
