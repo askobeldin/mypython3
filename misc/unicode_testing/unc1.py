@@ -48,4 +48,3 @@ for n in names:
     # outstr = fmt.format(name=n, char=tch).encode(outencoding,
                                                  # errors='replace')
     print(outstr)
-
