@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 #
-################################################################################
-import sys
-import re
-import itertools
+###############################################################################
 import argparse
-# import string
+import itertools
+import re
+import sys
 from collections import namedtuple
 
+# import string
 # from rereader import textlineinfo
 
 
 # tokens table
 TOKENS_TABLE = (
         ('HEADER1', r'^#{1,6}\s?.+(?:\n|\r|\r\n?){2}(?im)'),
-        ('HEADER2', r'^.+\s*(?:\n|\r|\r\n?)[\=|\-]{5,}(?:\n|\r|\r\n?){2}(?im)'),
+        ('HEADER2',
+         r'^.+\s*(?:\n|\r|\r\n?)[\=|\-]{5,}(?:\n|\r|\r\n?){2}(?im)'),
         # ('EMPTYLINE', r'^\s*$(?m)'),
         ('UNORDEREDLIST', r'^\s*(\-|\+|\*)\s+(.+(?:\n|\r|\r\n?))+(?im)'),
         ('ORDEREDLIST', r'^\s*\d+\.\d*\s+(.+(?:\n|\r|\r\n?))+(?im)'),
@@ -24,10 +25,10 @@ TOKENS_TABLE = (
 )
 
 TOK_REGEX = '|'.join(['(?P<%s>%s)' % pair for pair in TOKENS_TABLE])
+
 BLOCKSPATTERN = re.compile(TOK_REGEX)
 
 BLOCK = namedtuple('BLOCK', ('type', 'value'))
-
 
 def textblocks(txt):
     for mo in BLOCKSPATTERN.finditer(txt):

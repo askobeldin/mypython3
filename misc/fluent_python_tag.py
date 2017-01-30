@@ -4,6 +4,7 @@
 #
 # code example: 5.10
 
+
 def tag(name, *content, cls=None, **attrs):
     """Генерирует один или несколько HTML тегов"""
     if cls is not None:
@@ -19,7 +20,6 @@ def tag(name, *content, cls=None, **attrs):
                          (name, attr_str, c, name) for c in content)
     else:
         return '<%s%s />' % (name, attr_str)
-
 
 
 # testing

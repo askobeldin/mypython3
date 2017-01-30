@@ -50,7 +50,6 @@ class Application(ttk.Frame):
         # add menubar
         self.master.config(menu=self.menubar)
 
-
     def _createWidgets(self):
         top = self.winfo_toplevel()
         top.rowconfigure(0, weight=1)
@@ -179,8 +178,6 @@ class Application(ttk.Frame):
     def _select_window(self, index):
         # print 'Windows menu %s' % (index,)
         self.nb.select(index)
-
-
 
 
 def main():

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-################################################################################
+###############################################################################
 import sys
 import collections
 import re
@@ -8,6 +8,7 @@ import re
 
 Token = collections.namedtuple('Token', ['typ', 'value', 'line', 'column'])
 fmt = "{typ:<16} {value:<20} {line:0>5} {column:0>5}"
+
 
 def tokenize(code):
     token_specification = [
