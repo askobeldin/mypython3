@@ -125,6 +125,21 @@ gsm = getGlobalSiteManager()
 gsm.registerAdapter(HobotToNose, (IHobot,), INoseAware)
 gsm.registerAdapter(BeakToNose, (IBeak,), INoseAware)
 
+# fake object with attributes similar to INoseAware
+@implementer(INoseAware)
+class Fake:
+    def __init__(self, soppy, age):
+        "docstring"
+        self.soppy = soppy
+        self.age = age
+    def isSoppyNose(self):
+        """
+        """
+        return 'my nose: {}, and age is {}'.format(self.soppy and 'yes' or 'no',
+                                                    self.age)
+        
+    
+        
 
 residents = (('Собака', NoseAware(True)),
              ('Лев', NoseAware(False)),
@@ -134,6 +149,7 @@ residents = (('Собака', NoseAware(True)),
              ('Слоноул', 'fake object here'),
              ('Ворон 2', Beak(5, 'черный')),
              ('Лев 2', NoseAware(False)),
+             ('fake 1', Fake(True, 32)),
             )
 
 report = '{animal: <10} is soppy nose? {answer: <4}'
