@@ -36,14 +36,14 @@ class View(object):
     implements(IView)
 
     def printViewData(self, data):
-        print '--- %s' % data
+        print('--- %s' % data)
 
 
 class View2(object):
     implements(IView)
 
     def printViewData(self, data):
-        print 'view2 ***** %s' % data
+        print('view2 ***** %s' % data)
 
 
 class MyFunctionality(object):

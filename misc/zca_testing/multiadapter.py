@@ -22,7 +22,7 @@ class IFileView(Interface):
     """
     doc = Attribute('File view')
     filename = Attribute('Name of the file')
-    
+
 class IPrinter(Interface):
     """Prints data to the screen
     """
@@ -40,7 +40,7 @@ class SimpleView:
     def __init__(self, document):
         n = document.name
         b = document.body
-        line = len(n) * '=' 
+        line = len(n) * '='
         self.doc = '\n'.join((n, line, b))
 
 @implementer(IPrinter)
@@ -58,7 +58,7 @@ class FileView:
     def __init__(self, document, filename):
         n = document.name
         b = document.body
-        line = len(n) * '#' 
+        line = len(n) * '#'
         self.doc = '\n'.join((line, n, line, 'body:', b, line))
         self.filename = filename
 
@@ -72,7 +72,7 @@ class SimpleFilePrinter:
         view = self.view.doc
         print('Как бы вывод в файл: {}'.format(self.view.filename))
         print('{}'.format(view))
-        
+
 def main():
     d = Document(name="Ведомость покупных изделий",
                  body='\n'.join(
