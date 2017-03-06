@@ -12,14 +12,10 @@ from zope.component import getGlobalSiteManager
 from zope.component import queryUtility
 from zope.component import createObject
 
-# ipython embed shell
-from IPython import embed
-
 
 class IDatabase(Interface):
     def getConnection():
         """Return connection object"""
-
 
 @implementer(IDatabase)
 class FakeDb(object):
@@ -35,6 +31,4 @@ if __name__ == '__main__':
     gsm.registerUtility(factory, IFactory, 'fakedb')
 
     a = queryUtility(IFactory, 'fakedb')()
-
-    # run ipython shell
-    embed()
+    print(a.getConnection())

@@ -28,7 +28,7 @@ Component Architecture) - http://zopelada.ru. Там много всяких п�
 реестра
 """
 from zope.interface import Interface, Attribute
-from zope.interface import implementer                    
+from zope.interface import implementer
 from zope.component import getGlobalSiteManager
 from zope.component import adapter
 from zope.component import queryAdapter
@@ -137,9 +137,9 @@ class Fake:
         """
         return 'my nose: {}, and age is {}'.format(self.soppy and 'yes' or 'no',
                                                     self.age)
-        
-    
-        
+
+
+
 
 residents = (('Собака', NoseAware(True)),
              ('Лев', NoseAware(False)),
