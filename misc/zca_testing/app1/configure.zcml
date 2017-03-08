@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <include package="zope.component" file="meta.zcml" />
+
+  <utility
+      component="models.NoseAware"
+      provides="interfaces.INoseAware" />
+
+  <utility
+      component="models.Hobot"
+      provides="interfaces.IHobot" />
+
+  <utility
+      component="models.Beak"
+      provides="interfaces.IBeak" />
+
+  <adapter
+      factory="models.HobotToNose"
+      provides="interfaces.IHobot"
+      for="interfaces.INoseAware" />
+
+  <adapter
+      factory="models.BeakToNose"
+      provides="interfaces.IBeak"
+      for="interfaces.INoseAware" />
+
+</configure>
