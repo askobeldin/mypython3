@@ -1,21 +1,23 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 ###############################################################################
-from zope.configuration.config import ConfigurationMachine
-from zope.configuration.xmlconfig import registerCommonDirectives
-from zope.configuration.xmlconfig import processxmlfile
+# from zope.configuration.config import ConfigurationMachine
+# from zope.configuration.xmlconfig import registerCommonDirectives
+# from zope.configuration.xmlconfig import processxmlfile
 
 from zope.component import getGlobalSiteManager
+from zope.configuration import xmlconfig
 
 from models import NoseAware, Hobot, Beak
 from interfaces import *
 
 
 
-thefile = open("configure.zcml")
-context = ConfigurationMachine()
-registerCommonDirectives(context)
-processxmlfile(thefile, context)
+xmlconfig.file('configure.zcml')
+# thefile = open("configure.zcml")
+# context = ConfigurationMachine()
+# registerCommonDirectives(context)
+# processxmlfile(thefile, context)
 
 gsm = getGlobalSiteManager()
 registered = list(gsm.registeredHandlers())
