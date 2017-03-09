@@ -30,7 +30,7 @@ def main():
 
     for name in lst:
         print(greeter.supergreet(name))
-    
+
 
 gsm = getGlobalSiteManager()
 gsm.registerUtility(Greeter(), IGreeter, 'one')

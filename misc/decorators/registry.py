@@ -14,7 +14,6 @@ convertor.register decorator from anywhere in the code, as follows:
 """
 
 class ConvertError(Exception):
-
     """Error raised on errors on conversion"""
     pass
 
@@ -39,10 +38,7 @@ class Convertor(object):
         iconvertor = convertor()
         self.__registry[iconvertor.dtype] = iconvertor
 
-
-
 convertor = Convertor()
-
 
 class Person():
     """ a class in application """

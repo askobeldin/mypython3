@@ -8,7 +8,7 @@ from zope.interface import (Interface,
 from zope.component import (adapter,
                             getGlobalSiteManager,
                             getMultiAdapter)
-                            
+
 
 class IDocument(Interface):
     name = Attribute("""Name of document""")
@@ -77,8 +77,8 @@ def main():
 
     for v in (m1, m2):
         v.printData()
-    
-        
+
+
 gsm = getGlobalSiteManager()
 gsm.registerAdapter(MyFunctionality)
 

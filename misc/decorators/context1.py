@@ -9,8 +9,6 @@ import io
 import os
 
 
-
-
 f = io.StringIO()
 with redirect_stdout(f):
     print('foobar')
@@ -18,4 +16,3 @@ with redirect_stdout(f):
     # libc.puts(b'this comes from C')
     # os.system('echo and this is from echo')
 print('got stdout: "{0}"'.format(f.getvalue()))
-
