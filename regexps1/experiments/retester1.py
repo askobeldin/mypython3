@@ -59,6 +59,6 @@ if __name__ == '__main__':
     try:
         tt = importlib.import_module(tfile)
     except Exception:
-        print('Import {} error!'.format(tfile))
+        print('Importing {} error!'.format(tfile))
         sys.exit(1)
     main(tt)
